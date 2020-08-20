@@ -104,7 +104,9 @@ class AddTracksToSpotify {
     console.log(`Making ${this.tracks.length} track(s) as spotify uri...`);
 
     for (let i = 0; i < this.tracks.length; i++) {
-      const trackCur = this.tracks[i].replace(/[\r\n]/g, '');
+      const trackCurRaw = this.tracks[i].replace(/[\r\n]/g, "");
+      const trackCur = trackCurRaw.replace(/\(.+\)/g, "").replace(/\s+-\s+/g, " ");
+
 
       if (!trackCur) {
         continue;
